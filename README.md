@@ -1,8 +1,11 @@
-
 # 🧿 Eyedra
 
-**Eyedra** is a lightweight file activity monitoring web application built with Flask. It lets you track modifications, creations, deletions, and renames of critical files or directories in real-time, complete with severity levels and a clean dashboard—supporting both dark and light mode.
+**Eyedra** is a lightweight file integrity monitoring (FIM) web application built with Python & Flask. It lets you track modifications, creations, deletions, and renames of critical files or directories in real-time, complete with severity levels and a clean dashboard — supporting both dark and light mode.
 
+Developed by **Khaled Alsalmi**  
+- LinkedIn: [linkedin.com/in/khaled-alsalmi](https://linkedin.com/in/khaled-alsalmi)  
+- Twitter (X): [@0xKHD](https://twitter.com/0xKHD)
+  
 ---
 
 ## 🚀 Features
@@ -14,6 +17,7 @@
 - 🔍 **Real-Time Monitoring**
   - Detects and logs file system events: Created, Modified, Deleted, Renamed.
   - Displays recent activity and most active files.
+  - Milliseconds precision.
 
 - 📊 **Dashboard**
   - Overview of activity trends.
@@ -65,14 +69,14 @@ cd eyedra
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
-python app.py
+python3 app.py
 ```
 
 Access it at: `http://localhost:5000`
 
 ---
 
-## 🔐 Configuration
+## 🔐 Configuration (IMPORTANT)
 
 Update `config.ini`:
 ```ini
@@ -93,9 +97,3 @@ limit = 100 per minute
 log = logs/activity_log.jsonl
 monitor = utils/monitor_list.json
 ```
-
----
-
-## ✍️ Author
-
-Created by [Khaled Alsalmi](http://linkedin.com/in/khaled-alsalmi)
