@@ -33,9 +33,6 @@
   - Basic login system with session timeout.
   - Credentials stored in `config.ini`.
 
-- 📦 **Docker Support**
-  - One-command deployment with Docker.
-
 ---
 
 ## 🖼️ Screenshots
