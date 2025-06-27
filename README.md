@@ -59,7 +59,7 @@ Developed by **Khaled Alsalmi**
 ## ⚙️ Installation
 
 ### 🔧 Requirements
-- Python 3.11+
+- Python 3.9+
 - `pip` for Python dependencies
 
 ### 📥 Clone and Run Locally
