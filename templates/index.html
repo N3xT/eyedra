@@ -1,0 +1,155 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for("static", filename="css/dashboard.css") }}"></head>
+    <script src="https://cdn.jsdelivr.net/npm/js-circle-progress/dist/circle-progress.min.js" type="module"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/luxon@3/build/global/luxon.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-luxon@1"></script>
+
+    <link rel="stylesheet" href="{{ url_for("static", filename="css/base.css") }}">
+    <script src="{{ url_for("static", filename="js/dashboard.js") }}"></script>
+<body>
+    <main>
+        <div class="dashboard">
+            <div class="tab">
+                <div class="title">
+                    <p>Activity Overview</p>
+                    <select name="timeframe" id="chart-timeframe">
+                        <option value="6">6 hours</option>
+                        <option value="12">12 hours</option>
+                        <option value="24" selected>1 day</option>
+                        <option value="48">2 days</option>
+                        <option value="72">3 days</option>
+                        <option value="168">1 week</option>
+                        <option value="336">2 weeks</option>
+                        <option value="672">1 month</option>
+                    </select>
+                </div>
+                <div class="data center" id="activity-overview-chart">         
+                </div>
+            </div>
+
+            <div class="tab">
+                <div class="title">
+                    Recent Activity
+                    <select name="timeframe" id="recent-timeframe">
+                        <option value="0.5" selected>30 minutes</option>
+                        <option value="1">1 hour</option>
+                        <option value="3">3 hours</option>
+                        <option value="6">6 hours</option>
+                        <option value="12">12 hours</option>
+                        <option value="24">1 day</option>
+                    </select>
+                </div>
+                <div class="data">
+                    <table>
+                        <tbody id="recent-activity-logs">
+                            <tr><td>Loading logs...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="tab">
+                <div class="title">
+                    Most Activity
+                    <select name="timeframe" id="most-timeframe">
+                        <option value="0.5" selected>30 minutes</option>
+                        <option value="1">1 hour</option>
+                        <option value="3">3 hours</option>
+                        <option value="6">6 hours</option>
+                        <option value="12">12 hours</option>
+                        <option value="24">1 day</option>
+                    </select>
+                </div>
+
+                <div class="data">
+                    <table>
+                        <tbody id="most-active-logs">
+                            <tr><td>Loading logs...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="tab">
+                <div class="title">
+                    Level Activity
+                    <select name="timeframe" id="level-timeframe">
+                        <option value="0.5" selected>30 minutes</option>
+                        <option value="1">1 hour</option>
+                        <option value="3">3 hours</option>
+                        <option value="6">6 hours</option>
+                        <option value="12">12 hours</option>
+                        <option value="24">1 day</option>
+                    </select>
+                </div>
+                <div class="data center">
+                    <div class="indicator">
+                        <circle-progress class="critical" value="" max=""></circle-progress>
+                        <p>Critical</p>
+                    </div>
+
+                    <div class="indicator">
+                        <circle-progress class="high" value="" max=""></circle-progress>
+                        <p>High</p>
+                    </div>
+
+                    <div class="indicator">
+                        <circle-progress class="medium" value="" max=""></circle-progress>
+                        <p>Medium</p>
+                    </div>
+
+                    <div class="indicator">
+                        <circle-progress class="low" value="" max=""></circle-progress>
+                        <p>Low</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab">
+                <div class="title">
+                    Event Activity
+                    <select name="timeframe" id="event-timeframe">
+                        <option value="0.5" selected>30 minutes</option>
+                        <option value="1">1 hour</option>
+                        <option value="3">3 hours</option>
+                        <option value="6">6 hours</option>
+                        <option value="12">12 hours</option>
+                        <option value="24">1 day</option>
+                    </select>
+                </div>
+                <div class="data center">
+                    <div class="indicator">
+                        <circle-progress text-format="value" class="modified" value="" max=""></circle-progress>
+                        <p>Modified</p>
+                    </div>
+
+                    <div class="indicator">
+                        <circle-progress text-format="value" class="created" value="" max=""></circle-progress>
+                        <p>Created</p>
+                    </div>
+
+                    <div class="indicator">
+                        <circle-progress text-format="value" class="deleted" value="" max=""></circle-progress>
+                        <p>Deleted</p>
+                    </div>
+
+                    <div class="indicator">
+                        <circle-progress text-format="value" class="renamed" value="" max=""></circle-progress>
+                        <p>Renamed</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main> 
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,83 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Monitor</title>
+    <link rel="stylesheet" href="{{ url_for("static", filename="css/base.css") }}">
+    <link rel="stylesheet" href="{{ url_for("static", filename="css/monitor.css") }}">
+</head>
+<body>
+    <main>
+        {% if categories and categories.items() %}
+            {% for category, artifacts in categories.items() %}
+            <section class="category">      
+                <div class="category-title">
+                    {% if category == "directory" %}
+                    <i class="fa-solid fa-folder-open fa-lg"></i>
+                    <h2 class="title" style="text-transform: capitalize;">Directories</h2>
+                    {% elif category == "file" %}
+                    <i class="fa-solid fa-file fa-lg"></i>
+                    <h2 class="title" style="text-transform: capitalize;">Files</h2>
+                    {% endif %}
+                </div>   
+                <div class="artifacts">
+                    {% for artifact in artifacts %}
+                    <a href={{ artifact.id }}>
+                        <div class="artifact">
+                            <div class="title">
+                                {% if artifact.level == "low" %}
+                                <span class="circle" style="background-color: #1b9f1b"></span>
+                                {% elif artifact.level == "medium" %}
+                                <span class="circle" style="background-color: #dede16"></span>
+                                {% elif artifact.level == "high" %}
+                                <span class="circle" style="background-color: #c10000"></span>
+                                {% elif artifact.level == "critical" %}
+                                <span class="circle" style="background-color: #3e0085"></span>
+                                {% endif %}
+                                <h3>{{ artifact.path }}</h3>
+                            </div>
+                            <div class="level" style="text-transform: capitalize;">{{ artifact.level }}</div>
+                        </div>
+                    </a>
+                    {% endfor %}
+                </div>
+            </section>
+            {% endfor %}
+        {% else %}
+            <section class="category">      
+                <div class="category-title">
+                    <i class="fa-solid fa-folder-open fa-lg"></i>
+                    <h2 class="title" style="text-transform: capitalize;">Directories</h2>
+                </div>   
+                <div class="artifacts">
+                    <div class="artifact">
+                        <div class="title">
+                            <span class="circle"></span>
+                            <h3>Empty</h3>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="category">      
+                <div class="category-title">
+                    <i class="fa-solid fa-file fa-lg"></i>
+                    <h2 class="title" style="text-transform: capitalize;">Files</h2>
+                </div>   
+                <div class="artifacts">
+                    <div class="artifact">
+                        <div class="title">
+                            <span class="circle"></span>
+                            <h3>Empty</h3>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        {% endif %}
+    </main>
+</body>
+</html>
+{% endblock %}

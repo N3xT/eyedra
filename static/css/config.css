@@ -1,0 +1,154 @@
+.message {
+    display: inline-flex;
+    background-color: #98001f;
+    gap: 10px;
+    border-radius: 5px;
+    padding: 5px 10px 5px 10px;
+    margin-bottom: 20px;
+    align-items: center;
+}
+
+.modify {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.modify input {
+    display: block;
+    width: 85%;
+    height: 40px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    background: var(--tab-color);
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 14px;
+    color: var(--text-color);
+}
+
+.modify input:focus{
+    outline: 1px solid var(--text-muted);
+}
+
+.modify select {
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    background: var(--tab-color);
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 14px;
+    color: var(--text-color);
+    border-right: 10px solid transparent;
+    cursor: pointer;
+}
+
+.modify .button,
+.modify button {
+    font-family: var(--font-base);
+    color: var(--text-color);
+    border-radius: 5px;
+    background: var(--background-color);
+    width: 15%;
+    height: 40px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.modify button#add {
+    color: var(--button-text-color);
+    background-color: #018141;
+}
+.modify button#add:hover {
+    background-color: #006734;
+}
+
+.modify button#remove {
+    color: var(--button-text-color);
+    background-color: #98001f;
+}
+
+.modify button#remove:hover {
+    background-color: #7b0019;
+}
+
+.modify form {
+    display: flex;
+    width: 50%;
+}
+
+.modify form a.button {
+    width: 100%;
+}
+
+.modify a.button {
+    display: flex;
+    line-height: 40px;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--background-color);
+    border: 2px solid;
+    border-color: var(--tab-color);
+    width: 50%;
+    gap: 10px;
+}
+
+.modify a.button:hover {
+    background-color: var(--tab-color);
+}
+
+.category {
+    margin-top: 30px;
+    margin-bottom: 60px;
+}
+
+.category-title {
+    display: flex;
+    margin-bottom: 15px;
+    align-items: center;
+    gap: 20px;
+}
+
+.artifacts {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.artifacts a {
+    text-decoration: none;
+}
+
+.artifact {
+    color: var(--text-color);
+    background-color: var(--tab-color);
+    padding: 20px;
+    padding-left: 20px;
+    border-radius: 5px;
+    box-shadow: var(--box-shadow);
+}
+
+.title { 
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+    overflow: clip;
+}
+
+.circle {
+    height: 18px;
+    width: 18px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display:inline;
+}
+
+.level {
+    opacity: 0.5;
+}

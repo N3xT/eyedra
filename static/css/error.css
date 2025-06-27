@@ -1,0 +1,33 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: var(--text-color);
+}
+
+body,
+html {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: var(--background-color);
+    flex: 1;
+    gap: 20px;
+}
+
+.error-icon {
+    font-size: 35px;
+}
+
+.message {
+    color: var(--text-color);
+    font-size: 20px;
+    text-align: center;
+}

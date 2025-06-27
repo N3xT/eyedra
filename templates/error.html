@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Error</title>
+    <link rel="stylesheet" href="{{ url_for("static", filename="css/base.css") }}">
+    <link rel="stylesheet" href="{{ url_for("static", filename="css/error.css") }}">
+</head>
+<body>
+    <main>
+        <i class="fa-solid fa-person-running error-icon"></i>
+        <div class="message">
+            {% if message %}
+                {{ message|safe }}
+            {% else %}
+                An error occured
+            {% endif %}
+        </div>
+    </main>
+</body>
+</html>
+{% endblock %}

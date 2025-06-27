@@ -1,0 +1,87 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Configuration</title>
+    <link rel="stylesheet" href="{{ url_for("static", filename="css/base.css") }}">
+    <link rel="stylesheet" href="{{ url_for("static", filename="css/config.css") }}">
+</head>
+<body>
+    <main>
+        {% if message %}
+            {% if type == "error" %}
+            <div class="message" style="background-color: #98001f;">
+                <i class="fa-solid fa-circle-exclamation"></i>            
+            {% elif type == "success" %}
+            <div class="message" style="background-color: #018141;">
+                <i class="fa-solid fa-circle-check"></i>
+            {% endif %}
+                <div class="text">{{ message }}</div>
+            </div>
+        {% endif %}
+        <form id="modifyForm" method="POST" action="/config">
+            <div class="modify">
+                <input type="text" placeholder="/path/to/existing_file_or_directory" id="modify" name="path" required>
+                <select name="level" id="level">
+                    <option value="" disabled selected>Level</option>
+                    <option value="critical">Critical</option>
+                    <option value="high">High</option>
+                    <option value="medium">Medium</option>
+                    <option value="low">Low</option>
+                </select>
+                <button id="add" name="action" class="button" value="add" type="submit">Add</button>
+                <button id="remove" name="action" class="button" value="remove" type="submit">Remove</button>
+            </div>
+        </form>
+        <div class="modify">
+            <form method="POST" id="importForm" enctype="multipart/form-data" action="/config/import">
+                <input type="file" name="file" id="fileInput" style="display: none;" onchange="this.form.submit()">
+                <a onclick="document.getElementById('fileInput').click(); return false;" class="button">
+                    <i class="fa-solid fa-upload"></i>
+                    Import List
+                </a>
+            </form>
+            <a href="/config/export" class="button">
+                <i class="fa-solid fa-download"></i>
+                Export List
+            </a>
+        </div>
+        {% for category, artifacts in categories.items() %}
+        <section class="category">      
+            <div class="category-title">
+                {% if category == "directory" %}
+                <i class="fa-solid fa-folder-open fa-lg"></i>
+                <h2 class="title" style="text-transform: capitalize;">Directories</h2>
+                {% elif category == "file" %}
+                <i class="fa-solid fa-file fa-lg"></i>
+                <h2 class="title" style="text-transform: capitalize;">Files</h2>
+                {% endif %}
+            </div>   
+            <div class="artifacts">
+                {% for artifact in artifacts %}
+                <div class="artifact">
+                    <div class="title">
+                        {% if artifact.level == "low" %}
+                        <span class="circle" style="background-color: #1b9f1b"></span>
+                        {% elif artifact.level == "medium" %}
+                        <span class="circle" style="background-color: #dede16"></span>
+                        {% elif artifact.level == "high" %}
+                        <span class="circle" style="background-color: #c10000"></span>
+                        {% elif artifact.level == "critical" %}
+                        <span class="circle" style="background-color: #3e0085"></span>
+                        {% endif %}
+                        <h3>{{ artifact.path }}</h3>
+                    </div>
+                    <div class="level" style="text-transform: capitalize;">{{ artifact.level }}</div>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+        {% endfor %}
+    </main>
+</body>
+</html>
+{% endblock %}

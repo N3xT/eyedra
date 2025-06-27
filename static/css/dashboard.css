@@ -1,0 +1,119 @@
+body,
+html {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.dashboard {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: var(--tab-color);
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: var(--box-shadow);
+    gap: 20px;
+    
+}
+
+.dashboard .tab {
+    display: flex;
+    flex-direction: column;
+    flex-basis: calc(50% - 50px);
+    flex-grow: 1;
+    height: 200px;
+    background-color: var(--background-color);
+    border-radius: 5px;
+    padding: 20px;
+    gap: 20px;
+}
+
+.dashboard .tab:nth-of-type(1) {flex-basis: 100%;}
+
+.dashboard .title {
+    display: flex;
+    font-weight: 1000;
+    gap: 10px;
+    align-items: center;
+}
+
+.dashboard .title select {
+    border: none;
+    outline: none;
+    background: transparent;
+    padding-right: 10px;
+    color: #bbb;
+    margin-left: auto;
+    cursor: pointer;
+}
+
+.dashboard .title select:hover {
+    color: var(--text-color);
+
+}
+
+.dashboard .title select option {
+    color: #333333;
+}
+
+.dashboard .data {
+    display: flex;
+    height: calc(100% - 40px);
+    gap: 20px;
+}
+
+.dashboard .data.center {
+    justify-content: center;
+    align-items: center;
+}
+
+.dashboard .data .indicator {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+}
+
+.dashboard .data table {
+    display: block;
+    width: 100%;
+    overflow-y: auto;
+    color: var(--text-muted);
+}
+
+.dashboard .data canvas {
+    max-width: 100%;
+}
+
+table {
+    width: 100%;
+}
+
+table td:first-child {
+    padding-right: 10px;
+    white-space: nowrap;
+}
+
+table td:nth-child(2) {
+    width: auto;
+}
+
+circle-progress::part(value) {
+	stroke-width: 6px;
+	stroke-linecap: round;
+}
+
+circle-progress::part(circle) {
+	stroke-width: 2px;
+}
+
+circle-progress.critical::part(value) {stroke: #3e0085}
+circle-progress.high::part(value) {stroke: #c10000}
+circle-progress.medium::part(value) {stroke: #dede16}
+circle-progress.low::part(value) {stroke: #1b9f1b}

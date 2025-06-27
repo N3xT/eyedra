@@ -1,0 +1,42 @@
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    transition: background-color .2s ease, color .2s ease;
+}
+
+:root {
+    --primary-color: #aa0022;
+    --text-color: #ffffff;
+    --text-muted: #bbbbbb;
+    --background-color: #1a1a1a;
+    --tab-color: #333;
+    --tab-hover-color: #3b3b3b;
+    --button-text-color: #ffffff;
+    --box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+    --font-base: "Roboto", sans-serif; 
+}
+
+[data-theme="light"] {
+    --primary-color: #AA0022;
+    --text-color: #333333;
+    --text-muted: #666666;
+    --background-color: #ffffff;
+    --tab-color: #eeeeee;
+    --tab-hover-color: #dddddd;
+    --button-text-color: #ffffff;
+    --box-shadow: 0 8px 16px rgba(0, 0, 0, 0);
+    --font-base: "Roboto", sans-serif;
+}
+
+body {
+    height: 100%;
+    font-family: var(--font-base);
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-size: 16px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    color: var(--text-color);
+}

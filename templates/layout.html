@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Your Site</title>
+    <script src="https://kit.fontawesome.com/26692a38bd.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{{ url_for("static", filename="css/base.css") }}">
+    <link rel="stylesheet" href="{{ url_for("static", filename="css/layout.css") }}">
+    <script src="{{ url_for("static", filename="js/theme-toggle.js") }}"></script>
+</head>
+<body>
+    <div class="wrapper">
+
+        <nav>
+            <ul>
+                <li>
+                    <a class="tab {{ "active" if page == "dashboard" }}" href="/">
+                        <i class="fa-solid fa-house-chimney icon"></i>Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a class="tab {{ "active" if page == "monitor" }}" href="/monitor">
+                        <i class="fa-solid fa-eye icon"></i>Monitor
+                    </a>
+                </li>
+                <li>
+                    <a class="tab {{ "active" if page == "config" }}" href="/config">
+                        <i class="fa-solid fa-gear icon"></i>Configuration
+                    </a>
+                </li>
+
+                <section id="theme">
+                    <li>
+                        <a class="tab" id="theme-toggle">
+                            <i class="fa-solid fa-lightbulb"></i>
+                        </a>
+                    </li>
+                </section>
+
+                {% if username %}
+                <section id="logout">
+                    <div>
+                        <p id="username">{{ username }}</p>
+                    </div>
+                    <li>
+                        <a class="tab" href="/logout">
+                            <i class="fa-solid fa-door-open"></i>
+                        </a>
+                    </li>
+                </section>
+                {% endif %}
+            </ul>
+        </nav>
+
+        <main class="content">
+            {% block content %}{% endblock %}
+        </main>
+
+        <footer>
+            <p>Created by <a target="_blank" rel="noopener noreferrer" href="https://linkedin.com/in/khaled-alsalmi">Khaled Alsalmi</a></p>
+        </footer>
+
+    </div>
+</body>
+</html>

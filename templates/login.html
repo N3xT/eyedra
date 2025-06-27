@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Sign In</title>
+        <script src="https://kit.fontawesome.com/26692a38bd.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="{{ url_for("static", filename="css/base.css") }}">
+        <link rel="stylesheet" href="{{ url_for("static", filename="css/login.css") }}"></head>
+    </head>
+
+    <body>
+        <div id="container">
+            <form action="{{ "?next="+next_page if next_page else "/login" }}" method="POST">
+                <h1><i class="fa-solid fa-eye icon"></i>Eyedra</h1>
+                <h3 id="message">Account does not exists!</h3>
+                <input type="text" placeholder="Username" id="username" name="username" required>
+                <input type="password" placeholder="Password" id="password" name="password">
+                <button type="submit">Sign In</button>
+            </form>
+        </div>
+		
+        {% if message %}
+        <div class="message">{{ message }}</div>
+        {% endif %}
+
+        <script src="/pages/login/script.js"></script>
+    </body>
+</html>

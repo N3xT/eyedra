@@ -1,0 +1,117 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artifact Monitoring</title>
+    <link rel="stylesheet" href="{{ url_for("static", filename="css/base.css") }}">
+    <link rel="stylesheet" href="{{ url_for("static", filename="css/artifact_monitor.css") }}"></head>
+<body>
+    <main>
+        <div class="artifact">
+            <div class="title">
+                <div class="name">
+                    {% if artifact.level == "low" %}
+                    <span class="circle" style="background-color: #1b9f1b"></span>
+                    {% elif artifact.level == "medium" %}
+                    <span class="circle" style="background-color: #dede16"></span>
+                    {% elif artifact.level == "high" %}
+                    <span class="circle" style="background-color: #c10000"></span>
+                    {% elif artifact.level == "critical" %}
+                    <span class="circle" style="background-color: #3e0085"></span>
+                    {% endif %}
+                    <h3>{{ artifact.path }}</h3>
+                </div>
+                <div class="points" style="text-transform: capitalize;">{{ artifact.level }} Level</div>
+            </div>
+            <div class="table-wrapper">
+            <table>
+                <thead>
+                {% if artifact.category == "file" %}
+                <tr>
+                    <th>#</th>
+                    <th>Timestamp</th>
+                    <th>Event</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% if logs %}
+                    {% for log in logs %}
+                    <tr>
+                        <td>{{ log.id }}.</td>
+                        <td>{{ log.timestamp }} <strong>({{ log.time_ago }})</strong></td>
+                        <td>
+                            {% if log.event == "MODIFIED" %}
+                            <i class="fa-solid fa-pen"></i>
+                            {% elif log.event == "CREATED" %}
+                            <i class="fa-solid fa-folder-plus"></i>
+                            {% elif log.event == "DELETED" %}
+                            <i class="fa-solid fa-trash"></i>
+                            {% elif log.event == "RENAMED" %}
+                            <i class="fa-solid fa-file-signature"></i>
+                            {% endif %}
+                            {{ log.event }}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td></td>
+                        <td>No logs to view</td>
+                        <td>-</td>
+                    </tr>
+                {% endif %}
+                </tbody>
+                {% else %}
+                <tr>
+                    <th>#</th>
+                    <th>Timestamp</th>
+                    <th>Event</th>
+                    <th>File Name</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% if logs %}
+                    {% for log in logs %}
+                    <tr>
+                        <td>{{ log.id }}.</td>
+                        <td>{{ log.timestamp }} <strong>({{ log.time_ago }})</strong></td>
+                        <td>
+                            {% if log.event == "MODIFIED" %}
+                            <i class="fa-solid fa-pen"></i>
+                            {% elif log.event == "CREATED" %}
+                            <i class="fa-solid fa-folder-plus"></i>
+                            {% elif log.event == "DELETED" %}
+                            <i class="fa-solid fa-trash"></i>
+                            {% elif log.event == "RENAMED" %}
+                            <i class="fa-solid fa-file-signature"></i>
+                            {% endif %}
+                            {{ log.event }}
+                        </td>
+                        {% if log.event == "RENAMED" %}
+                            <td>{{ log.file_name }} renamed to {{ log.new_file_name }}</td>
+                        {% else %}
+                            <td>{{ log.file_name }}</td>
+                        {% endif %}
+                    </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td></td>
+                        <td>No logs to view</td>
+                        <td>-</td>
+                        <td>-</td>
+                    </tr>
+                {% endif %}
+                </tbody>
+                {% endif %}
+            </table>
+            </div>
+        </div>
+    </main> 
+</body>
+</html>
+{% endblock %}
